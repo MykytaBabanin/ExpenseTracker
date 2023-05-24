@@ -27,12 +27,12 @@ final class TransactionListViewModel: ObservableObject {
     }
     
     func getTransactions() {
-        guard let url = URL(string: "https://api.monobank.ua/personal/statement/0/1554466347") else {
+        guard let url = URL(string: "https://api.monobank.ua/personal/statement/0/\(getOneMonthBeforeDate())") else {
             return
         }
         
         var request = URLRequest(url: url)
-        let token = "u2jjuKlIVE3m0tUVp3FIKFnzs0W3IYIAWncVsMPYH8Sw"
+        let token = Bundle.main.infoDictionary?["api_token"] as? String
         request.setValue(token, forHTTPHeaderField: "X-Token")
         
         URLSession.shared.dataTaskPublisher(for: request)
@@ -71,28 +71,38 @@ final class TransactionListViewModel: ObservableObject {
     func accumulateTransaction() -> TransactionPrefixSum {
         guard !transactions.isEmpty else { return [] }
         
-        let today = "02/17/2022".dateParse()
+        let today = "05/24/2023".dateParse()
         let dateInterval = Calendar.current.dateInterval(of: .month, for: today)!
         
         var sum: Double = .zero
         var cumulativeSum = TransactionPrefixSum()
         
         for date in stride(from: dateInterval.start, to: today, by: 60 * 60 * 24) {
-            let dailyExpenses = transactions.filter { $0.dateParsed == date && $0.isExpense }
-            let dailyTotal = dailyExpenses.reduce(0) { $0 - $1.signedAmount }
+            let calendar = Calendar.current
+            let dailyExpenses = transactions.filter { transaction in
+                let transactionDateComponents = calendar.dateComponents([.year, .month, .day], from: transaction.dateParsed)
+                let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+                return transactionDateComponents == dateComponents
+            }
+            let dailyTotal = dailyExpenses.reduce(0) { $0 - $1.amount / 10 }
             
-            sum += dailyTotal
-            cumulativeSum.append((date.formatted(), sum))
+            sum += Double(dailyTotal)
+            cumulativeSum.append((date.formatted(), sum / 10))
             print(date.formatted(), "dailyTotal:", dailyTotal, "sum: ", sum)
         }
         
         return cumulativeSum
     }
     
-}
-
-enum Date {
-    case day
-    case week
-    case month
+    private func removeTrailingZero(from value: Double) -> Double {
+        return value.truncatingRemainder(dividingBy: 1) == 0 ? Double(Int(value)) : value
+    }
+    
+    private func getOneMonthBeforeDate() -> Int {
+        let now = Date()
+        guard let oneMonthBeforeNow = Calendar.current.date(byAdding: .month, value: -1, to: now) else { return 0 }
+        let timestamp = oneMonthBeforeNow.timeIntervalSince1970
+        return Int(timestamp)
+    }
+    
 }

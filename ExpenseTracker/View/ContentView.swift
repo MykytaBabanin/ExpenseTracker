@@ -28,7 +28,7 @@ struct ContentView: View {
                             let totalExpenses = data.last?.1 ?? 0
                             CardView {
                                 VStack(alignment: .leading) {
-                                    ChartLabel(totalExpenses.formatted(.currency(code: "EUR")), type: .title, format: "€%.02f")
+                                    ChartLabel("\(totalExpenses)" + " UAH", format: "%.02f  UAH")
                                     LineChart()
                                 }
                                 .background(Color.systemBackground)
@@ -42,6 +42,9 @@ struct ContentView: View {
                     })
                     .padding()
                     .frame(maxWidth: .infinity)
+                }
+                .refreshable {
+                    transactionListsViewModel.getTransactions()
                 }
                 .background(Color.background)
                 .navigationBarTitleDisplayMode(.inline)

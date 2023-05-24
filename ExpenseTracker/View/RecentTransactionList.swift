@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RecentTransactionList: View {
-    @State private var isPresented = false
     @EnvironmentObject var transactionListViewModel: TransactionListViewModel
     var body: some View {
         VStack {
@@ -18,8 +17,8 @@ struct RecentTransactionList: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    self.isPresented = true
+                NavigationLink(destination: {
+                    TransactionListView()
                 }, label: {
                     HStack(spacing: 4) {
                         Text("See all")
@@ -28,9 +27,6 @@ struct RecentTransactionList: View {
                     .foregroundColor(Color.text)
                 })
             }
-            .sheet(isPresented: $isPresented, content: {
-                TransactionListView()
-            })
             .padding(.top)
             
             ForEach(Array(transactionListViewModel.transactions.prefix(5).enumerated()),id: \.element) { (index, transaction) in

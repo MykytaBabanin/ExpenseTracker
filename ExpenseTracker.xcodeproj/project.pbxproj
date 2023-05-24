@@ -37,6 +37,7 @@
 		BB1F49B92A1C14AA005639E2 /* TransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListViewModel.swift; sourceTree = "<group>"; };
 		BB1F49BB2A1C89B8005639E2 /* RecentTransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTransactionList.swift; sourceTree = "<group>"; };
 		BB1F49BE2A1C9458005639E2 /* TransactionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListView.swift; sourceTree = "<group>"; };
+		BB424D1F2A1DE4F500D9FB0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +74,7 @@
 		BB1F499F2A1C0B7C005639E2 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				BB424D1F2A1DE4F500D9FB0B /* Info.plist */,
 				BB1F49A02A1C0B7C005639E2 /* ExpenseTrackerApp.swift */,
 				BB1F49BD2A1C93C3005639E2 /* View */,
 				BB1F49B02A1C0E8F005639E2 /* TransactionModel.swift */,
@@ -204,6 +206,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				API_TOKEN = u2jjuKlIVE3m0tUVp3FIKFnzs0W3IYIAWncVsMPYH8Sw;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -264,6 +267,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				API_TOKEN = u2jjuKlIVE3m0tUVp3FIKFnzs0W3IYIAWncVsMPYH8Sw;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -317,6 +321,7 @@
 		BB1F49AC2A1C0B7E005639E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_TOKEN = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -325,6 +330,7 @@
 				DEVELOPMENT_TEAM = 8C6338U8JH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExpenseTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -346,6 +352,7 @@
 		BB1F49AD2A1C0B7E005639E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_TOKEN = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -354,6 +361,7 @@
 				DEVELOPMENT_TEAM = 8C6338U8JH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExpenseTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

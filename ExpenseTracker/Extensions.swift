@@ -23,6 +23,14 @@ extension DateFormatter {
     }()
 }
 
+extension Int {
+    func dateParse() -> Date {
+        let parseDate = Date(timeIntervalSince1970: Double(self))
+        
+        return parseDate
+    }
+}
+
 extension String {
     func dateParse() -> Date {
         guard let parseDate = DateFormatter.allNumericUSA.date(from: self) else { return Date() }
